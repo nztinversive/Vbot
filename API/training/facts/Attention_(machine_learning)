@@ -1,0 +1,228 @@
+In artificial neural networks, attention is a technique that is meant to mimic cognitive attention. The effect enhances some parts of the input data while diminishing other parts — the motivation being that the network should devote more focus to the small, but important, parts of the data. Learning which part of the data is more important than another depends on the context, and this is trained by gradient descent.
+Attention-like mechanisms were introduced in the 1990s under names like multiplicative modules, sigma pi units, and hyper-networks. Its flexibility comes from its role as "soft weights" that can change during runtime, in contrast to standard weights that must remain fixed at runtime. Uses of attention include memory in fast weight controllers that can learn "internal spotlights of attention" (also known as Transformers with "linearized self-attention"), neural Turing machines, reasoning tasks in differentiable neural computers, language processing in transformers, and LSTMs, and multi-sensory data processing (sound, images, video, and text) in perceivers.  Listed in the Variants section below are the many schemes to implement the soft-weight mechanisms.
+
+General idea
+Given a sequence of tokens 
+  
+    
+      
+        
+          t
+          
+            i
+          
+        
+      
+    
+    {\displaystyle t_{i}}
+   labeled by the index 
+  
+    
+      
+        i
+      
+    
+    {\displaystyle i}
+  , a neural network computes a soft weight 
+  
+    
+      
+        
+          w
+          
+            i
+          
+        
+      
+    
+    {\displaystyle w_{i}}
+   for each 
+  
+    
+      
+        
+          t
+          
+            i
+          
+        
+      
+    
+    {\displaystyle t_{i}}
+   with the property that 
+  
+    
+      
+        
+          w
+          
+            i
+          
+        
+      
+    
+    {\displaystyle w_{i}}
+   is non-negative and 
+  
+    
+      
+        
+          ∑
+          
+            i
+          
+        
+        
+          w
+          
+            i
+          
+        
+        =
+        1
+      
+    
+    {\textstyle \sum _{i}w_{i}=1}
+  . Each 
+  
+    
+      
+        
+          t
+          
+            i
+          
+        
+      
+    
+    {\displaystyle t_{i}}
+   is assigned a value vector 
+  
+    
+      
+        
+          v
+          
+            i
+          
+        
+      
+    
+    {\displaystyle v_{i}}
+   which is computed from the word embedding of the 
+  
+    
+      
+        i
+      
+    
+    {\displaystyle i}
+  th token. The weighted average 
+  
+    
+      
+        
+          ∑
+          
+            i
+          
+        
+        
+          w
+          
+            i
+          
+        
+        
+          v
+          
+            i
+          
+        
+      
+    
+    {\textstyle \sum _{i}w_{i}v_{i}}
+   is the output of the attention mechanism.
+The query-key mechanism computes the soft weights. From the word embedding of each token, it computes its corresponding query vector 
+  
+    
+      
+        
+          q
+          
+            i
+          
+        
+      
+    
+    {\displaystyle q_{i}}
+   and key vector 
+  
+    
+      
+        
+          k
+          
+            i
+          
+        
+      
+    
+    {\displaystyle k_{i}}
+  . The weights are obtained by taking the softmax function of the dot product 
+  
+    
+      
+        
+          q
+          
+            i
+          
+        
+        
+          k
+          
+            j
+          
+        
+      
+    
+    {\displaystyle q_{i}k_{j}}
+   where 
+  
+    
+      
+        i
+      
+    
+    {\displaystyle i}
+   represents the current token and 
+  
+    
+      
+        j
+      
+    
+    {\displaystyle j}
+   represents the token that's being attended to.  
+In some architectures, there are multiple "heads" of attention (termed 'multi-head attention'), each operating independently with their own queries, keys, and values.
+
+A language translation example
+To build a machine that translates English to French, one takes the basic Encoder-Decoder and grafts an attention unit to it (diagram below).  In the simplest case, the attention unit consists of dot products of the recurrent encoder states and does not need training.  In practice, the attention unit consists of 3 fully-connected neural network layers called query-key-value that need to be trained.  See the Variants section below.
+
+Viewed as a matrix, the attention weights show how the network adjusts its focus according to context.
+
+This view of the attention weights addresses the "explainability" problem that neural networks are criticized for.  Networks that perform verbatim translation without regard to word order would have a diagonally dominant matrix if they were analyzable in these terms.  The off-diagonal dominance shows that the attention mechanism is more nuanced.  On the first pass through the decoder, 94% of the attention weight is on the first English word "I", so the network offers the word "je".  On the second pass of the decoder, 88% of the attention weight is on the third English word "you", so it offers "t'".  On the last pass, 95% of the attention weight is on the second English word "love", so it offers "aime".
+
+Variants
+There are many variants of attention that implements soft weights, including Juergen Schmidhuber's "internal spotlights of attention" generated by fast weight programmers or fast weight controllers (1992) (also known as Transformers with "linearized self-attention"). Here a slow neural network learns by gradient descent to program the fast weights of another neural network through outer products of self-generated activation patterns called "FROM" and "TO" which in Transformer terminology are called "key" and "value." This fast weight "attention mapping" is applied to queries. (b) Bahdanau Attention, also referred to as additive attention, and (c) Luong Attention  which is known as multiplicative attention, built on top of additive attention, and (d) self-attention introduced in transformers. For convolutional neural networks, the attention mechanisms can also be distinguished by the dimension on which they operate, namely: spatial attention, channel attention, or combinations of both.These variants recombine the encoder-side inputs to redistribute those effects to each target output.  Often, a correlation-style matrix of dot products provides the re-weighting coefficients (see legend).
+
+See also
+Transformer (machine learning model) § Scaled dot-product attention
+Perceiver § Components for query-key-value (QKV) attention
+
+References
+External links
+Dan Jurafsky and James H. Martin (2022) Speech and Language Processing (3rd ed. draft, January 2022), ch. 10.4 Attention and ch. 9.7 Self-Attention Networks: Transformers
+Alex Graves (4 May 2020), Attention and Memory in Deep Learning (video lecture), DeepMind / UCL, via YouTube
+Rasa Algorithm Whiteboard - Attention via YouTube

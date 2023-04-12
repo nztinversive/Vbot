@@ -1,0 +1,596 @@
+So this week, I'm very pleased to introduce Brent Seals. I should say that this is not
+a physics talk, but you know, we quite often have talks in kind of peripheral areas. Many
+people in the department do data analysis, and they're interested in complicated, interesting
+data problems. So, you know, whether it's astronomers or medical physicists or particle
+physicists or what. So this week, we have somebody who is an expert on some very complicated,
+very interesting data visualization, perception problems, in particular, reading the insides
+of things that seem like they might be impossible to read. So I remember going to Herculaneum
+and learning about the library of scrolls in Herculaneum and thinking, man, it would
+be really cool if people could read those things. And it turns out that people can and
+the person who can, in particular, is our guest this week. So Brent, take it away. It's
+all yours.
+Well, thank you, Douglas. And thanks for reaching out and inviting me. I appreciate it. As I
+understand it, I'm competing here for an honorarium that could be your upvotes to actually get
+me out in person when that's safe. So if you like this talk, you know, I'd actually like
+to come out and meet you, talk about your work and find out what's going on. I'm going
+to talk tonight about the invisible library, and in particular, our success of reading
+a particular scroll, the scroll from Ngedi, and I'm also going to go from Herculaneum.
+I'm broadcasting tonight from my office on the campus of the University of Kentucky,
+where I am a professor and department chair of the computer science program here at the
+University of Kentucky. I'm going to start by telling you that last year, when COVID
+began, I was actually at the Getty on sabbatical. The Getty in Los Angeles is a beautiful museum
+that also has a conservation institute, and that institute is a place where a lot of science
+comes together in the service of what's called heritage science. And as things in my work
+have evolved from computer science and imaging toward the heritage sector, I find myself
+calling what I do more heritage science than anything else. That year promised to be great.
+The Getty has a replica campus, which is a replica of the Villa of the Papyri, an ancient
+structure that was excavated in the 1750s, began the exhibition anyway, in the Bay of
+Naples. And that replica set up by Jean Paul Getty right on the coast in Malibu is what
+you're seeing on the right. And then the main campus of the conservation institute and the
+art gallery of Getty is on the left. It's a beautiful facility, and I spent time there.
+And the ancient history of Vesuvius is intimately tied with what happened with the Villa of
+the Papyri, because it was Vesuvius' explosion that both destroyed and preserved what we
+know now from Pompeii and from the city of Herculaneum, which is where the Villa of the
+Papyri was located. And this picture, this sketch here is fairly ironic. When you think
+of California, the fires and this picture that we actually took one day when in the
+hills of Malibu behind the actual replica Villa, we had a fire that was oddly reminiscent
+of the real fire that happened two millennium ago, two millennia ago when Vesuvius exploded.
+I'll have more to say a little bit about that later. But one of the things that took me
+out to the Getty for my sabbatical was a show, an exhibit that was curated by Ken Lapatin
+and presented in the gallery at the Villa called Buried by Vesuvius. And the program
+put together many of the artifacts from the Bay of Naples and in particular from Herculaneum,
+such as this original bronze that was excavated in the 1750s, the Drunken Satyr. And this
+particular piece, some of you may recognize this as a sundial in the shape of a prosciutto
+ham. So it's really not every day that you get to see an ancient bronze sundial in this
+shape of a prosciutto ham. Pretty interesting exhibit, loved getting to know Ken Lapatin,
+I had a little slice of this exhibit, if you look here in the left hand side, where you
+see a computer screen showing some tomographic slices. And you see over here, the Digital
+Restoration Initiative called out in the acknowledgments. That's going to be some of the work I'll talk
+about today, the tomography, the imaging and the fascination that I've had for a while
+with the scrolls from Vesuvius. So we have the documentation of the ancients. So we know
+that this material, we know its provenance, and we know for certain what its dates are.
+The explosion was recorded by many in the ancient world, and was a cataclysmic event.
+And in some sense is thought to be, is said to be the sort of birthplace of archaeology,
+if you will, because both Herculaneum and Pompeii led to what we now call modern techniques
+in archaeology and other areas of analysis for these kinds of heritage sites. So many
+things, many artifacts, many of them were available at that program at the Getty buried
+by Vesuvius. But the thing that I'm going to start with in my prologue are the scrolls
+from Herculaneum, and you're seeing one of them here, and the challenge that they have
+presented. And I'm going to bookend this talk by coming back to this at the end, so that
+I hope by the end you can appreciate the challenge of the journey that I've gone through scientifically,
+historically, and also in terms of heritage science and the development of the field.
+So the way I'm going to organize my talk is to speak first about some of my inspirations
+and origins by telling you a few stories, and I'm going to show you my first successful
+experiment with virtual unwrapping. And then I'm going to move to successes where I'll
+speak specifically to the scroll from En-Gedi, which many of you may have heard of because
+it got pretty good press. And that was probably the pinnacle of my success till now. And then
+I'm going to finish by showing you current work, what remains, what are the challenges,
+and how am I approaching those things now? So let me start with inspiration. Back in
+the late 90s, I was cold called by a woman named Cheryl Sequist, who sent me a one-page
+letter that was badly faded, and she wanted to know if I could do a digital restoration.
+And at the time, late 90s, basically it was Y2K. I didn't really have a good technique.
+Spectral imaging was just emerging. We were doing some digital methods, but most of our
+imaging was still being done with film. So high resolution digital imaging was right
+on the cusp in the mid to late 90s. But I took this letter, the narrative of which I
+couldn't read because it was too badly faded. The picture you see on your screen was one
+from maybe a decade prior. And with the help of Joanna Leo, who at the time was an undergraduate
+in my program, we set about the task of trying to solve this problem. One-page letter,
+do anything you can to try to digitally restore what might still be preserved on that page.
+And most of what I did failed, but eventually with the help of a high resolution flatbed scanner,
+we played with color spaces and were able through some basic transformations to pull out an image
+that basically found the little crease where the ink signal was. And at a fairly high resolution,
+spatial resolution, because this flatbed scanner at the time was really the best we could do both
+in terms of lighting and resolution. We converted that one-page letter, and I'll show you a little
+scan here from the original to a full restoration. There's a lot of back-to-back hand work here,
+and there was a lot of fiddling around with trying to decide, okay, what's left on the page,
+how do we capture it? And then what we capture, how can that be amplified?
+Actually became a metaphor for a lot of the work that I then started to get into. But what really
+surprised me by way of inspiration and the point of me bringing up this story is that the narrative
+itself in the letter was compelling. I'm a computer scientist and you think, well,
+that's a fairly dispassionate effort. You're writing code, you're thinking about algorithms,
+thinking about the theoretical underpinnings, what have you. But when you actually read the letter,
+it turns out the letter was from Cheryl's father, who was on the USS LST 450, which was a landing
+ship tank in the South Pacific in 1944. And it was unclear as to whether he was going to be
+coming home. I mean, this was a skirmish. It was a lot more than a skirmish. This was World War II.
+And he writes, hello, my little darling, how are you this evening? Fine angle.
+I decided to write you because I know you'll be glad to hear from me. And the letter goes on.
+It's a one-page letter. It's sweet. And when you imagine the sweetness of a letter coming from
+the threat and fear of war, it's kind of interesting. And it really was compelling to me.
+So you read down in the letter and he says, honey, just think before long, you'll enjoy
+your first Christmas. I only wish I could be there to see you get your first Christmas gift.
+And he closes the letter, oceans of love, your daddy, Frank. So yeah, I mean, it was a tremendous
+coup for us to be able to solve the technical problem. But what actually hooked me and inspired
+me was the narrative. We recovered a narrative that was special between Cheryl's dad and Cheryl
+so that she could then proudly display the words that her dad had written her and they weren't lost.
+It's true that the original was not going to be physically restored, but we did a digital
+restoration. So back to the origins of my work, the reason Cheryl found me was because I had been
+working on digital restoration problems for literature and for things like the manuscript
+you see here that were stuck in libraries and museums, but not prominently displayed because
+of the damage. Here you see me back in younger days holding one of the volumes of the Cotton
+Collection at the British Library. This Cotton Collection was one of the core manuscript
+collections that founded the library and contains the only extant copy of the manuscript that
+contains Beowulf. So on the literary side, what got me interested in applying computer science
+and digitization and imaging to humanities and to antiquities was this project called the
+Electronic Beowulf. I was not the principal, but I was a technician, if you will, and
+early researcher on the project. And the idea was we're building digital libraries. This is the 90s.
+Is there a way we can build robust and interesting digital editions of things that are actually hard
+to digitize, like a manuscript that's been damaged, restored, put into pages, difficult
+to turn the pages, and so forth. And so you see here a screenshot from this beautiful
+Macintosh 1995 version, the software for which I and my graduate students were responsible
+initially. And this got me interested in what we could do in terms of using
+technology to pull more from a manuscript and from the acquisition of data around a manuscript
+than you could see, for example, with the naked eye or than what people were doing in the standard
+digital library realm. To give you a timeline, I am going to talk a little bit about micro-CT.
+We'll get to x-ray in a minute. Everything I started with, of course, was visible,
+ultraviolet or infrared. But the first computed tomography scan of a mummy,
+if you want to think about the intersection of tomography and antiquities, was done just prior
+to 1980. And in 79, actually, the Nobel Prize in medicine went to Hounsfield and Cormac for
+for a computed tomography. So basically, the decade of the 80s was the development of that.
+And I came on the scene in 1990 when I finished my PhD and started working as a computer vision
+expert. What I found out as I entered the humanities and the technology of imaging
+around things like manuscripts was that there was a transformation going on, and I entered it.
+Because the decade of the 80s was basically the last time a lot of physical restoration was
+happening. And it was the last time that a lot of the analog imaging was happening because
+everything was turning digital. And of course, the internet happened in about in the early 90s.
+And by 1995, everybody knew and could see what was happening. So that was when the electronic
+Beowulf was happening. And my first foray into making real contributions in this area was near
+the end of that decade where I worked on something called virtual flattening. And I'm
+talking about it because it represents the origin of virtual unwrapping. So let me show you what I
+mean. I had the chance to do some imaging at the Marciano Library in Venice. And this library
+contains a manuscript that's famous. It's the oldest complete copy of the Iliad called the
+Venetus A. And incredibly, this manuscript had never been digitized. There was a facsimile
+that was done in 1901, I think, by an Italian by the name of Comparetti. You can see on this
+manuscript that you've got some cockling. This is 10th century, so it's 1,000 years old.
+And the vellum, although remarkably preserved, was by no means flat, nor was it easy to handle
+this manuscript. The Comparetti facsimile, which you're seeing here, shows the kind of
+resolution that 1901 photography could give you. On the left, you see the decorations,
+and on the right, you see the writing. If you're interested in the Greek, you can make out those
+words. But take a look at what you can do with the 50-megapixel Hasselblad digital back, right?
+So you end up with everything in color. And in particular, these spots that may have been
+readable in Comparetti's edition with photography, you end up seeing them photographically with the
+correct color and at very high resolution. Basically, in collaboration with Harvard
+University, we made an amazing facsimile of this manuscript. But I was really interested in more
+than just the improvement in the photography. Yes, decorations from Comparetti really failed
+to capture what you really wanted, which is seen here from the 50-megapixel image.
+But what I wanted to do in the setup was capture the shape of the page as well as its appearance.
+And this sort of became a theme for me because by capturing both the shape and the appearance,
+we could do more by way of digital restoration than by the appearance alone.
+So we pioneered a method to be able to do exactly that using this cradle and then an added device
+that you see in a minute in operation to be able to register the shape image of every page with
+high resolution spectral photography of every page. And you had to be very careful and ginger
+about handling each of the pages. But here's basically what we did. Now you realize this was
+back in the late 90s or early 2000s technology. We used a link joint system,
+which at the time had a laser-based non-contact probe. So it's basically structured light on the
+end. And for two minutes on every page, we lingered to be able to capture a shape model.
+And then in software, we registered everything together through calibration so that we could
+put together a page image that captured both the photographic properties and the shape.
+Based on that, we developed an algorithm called virtual flattening, which was to say
+all those cockles can be backed out using a fairly simple simulation, which is to
+use the shape and the texture as a starting point and then run a simulation that takes
+that representation with points and constraints, basically points and springs,
+and basically run the big simulation as you let that fall flat and relax against the surface.
+And through the relaxation algorithm, basically generate a virtual flattening result,
+which gives you an approximation of what the page should have looked like if you had been
+able to iron it flat and then photograph it. Instead, we captured the shape and digitally
+flattened it and got a pretty good approximation. So if you're interested in that work,
+we published some papers where we did control experiments in the lab,
+and then we tried to quantify what kinds of non-linearities that we saw that would be
+different in elasticity and other kinds of difficult to pin down things. But overall,
+the development of that led us from virtual flattening directly to virtual unwrapping in
+the space of a couple of years. The virtual unwrapping was conceived from the flattening
+because we realized in our expeditions that there were lots of artifacts that not only were difficult
+to handle but were almost impossible to open. Either they're rolled up or they're codex
+codices where the pages can't be turned at all. So I started to imagine, would there be a way to
+do anything with something like that? Difficult because if you can't expose something to
+photography, how do you capture any data about it? But I'd been working in medicine and I knew
+about tomography, so I started thinking, well, maybe there would be a way through any kind of
+volumetric method. And we have a number of different methods that allow us to capture
+information. We have seismic type imaging that does ground penetrating radar, for example. We
+also have ultrasound. We have MRI, magnetic resonance imaging. We have tomography. So we
+started to take a look and we said, well, in general, if we could capture information about
+a volume non-invasively, what could be done to do with that information? So first experiment,
+here it is. We went to the basement of the medical center at the University of Kentucky. We used a
+medical grade tomography machine, millimeter resolution. On the right, you see the slices,
+and you're an astute audience and you're probably familiar with this. You're seeing the slices,
+the axial view. So because it's coiled up, when you slice it that way, you see this cross section
+that looks like the wrap of the jelly donut. And I'm playing that as a movie as you go through
+along the long axis of the cylinder. So not too challenging as a technical feat,
+but illustrating the point, we built all the software to segment the surface where we knew
+the writing was. And then instead of doing virtual flattening, which relaxes to a plane,
+I basically took the red points on the top and said, OK, I'll fix those and then I'll just apply
+a gravity force and I'll let this point spring system at a very fine grain just relax. And so
+you can see we played with the elastic parameters so that it would just relax. And we're visualizing
+that. Of course, you don't need to do it in a way to see every step. Basically just run the
+simulation. And on the left, you see original photograph on the top virtually unwrapped
+directly from the volume in the middle. So that's the X-ray view. And then on the bottom,
+a little bit of enhancement to see that indeed, if you're interested in looking at the content inside,
+it is possible from a volume to do the steps necessary to read something that's inside.
+So incredibly exciting first experiment, completely engineered basically by me
+to avoid a lot of problems that later we would have to face that I'll talk about.
+But at the outset, birth of virtual unwrapping right about 2000, 2001.
+So we ramped up to be able to get a real object that would give us really interesting results
+that was not going to ever be opened and get access to it and get ready to do the experiments.
+Now, for those of you who've been in the biz for a while, this was a difficult era to be
+buying machines that were factory ready to do tomography, especially micro-tomography. Okay,
+so one thing is that we knew that a medical grade machine would not give us the resolution that we
+needed probably with Papyrus to be able to read anything because it was too coarse and we needed
+finer sampling. We also knew that we would not probably be able to buy a commercially
+made machine at that time. That would be portable enough to fit the bill because we had to do the
+work at the British Museum where the Book of the Dead exists in the archives. Papyrus Rule 10748
+is actually an intact Book of the Dead that's never been unwrapped. It's in Papyrus and it's
+actually in really good shape. You see that it's not exactly a cylinder, but you've got this sort of
+oval shape. It's been crushed, desiccated, and ready to go. So we did the conservation,
+we got the permissions, and we got ready to go. And we were never able to do the work.
+And the reason why we were never able to do the work is something that you'll have to wait to
+find out. But it was incredibly frustrating and left me with a sense of desperation because we
+felt we had a technique where this was the perfect case and we were unable to do the work. So virtual
+unwrapping, although it started in my lab in the early 2000s, didn't find joy until we replaced
+the work we're going to do on the Dead Sea Scroll, sorry, the Book of the Dead, with
+scrolls from Herculaneum. Okay, so near the end of that decade, we finally received permission
+and access to scan a scroll from Herculaneum. This particular scroll I'm showing on the left
+is actually in the Institut de France, which is across the river, it's across the Artist's
+Bridge in Paris from the Louvre. And there's a wonderful library there that houses all kinds of
+material. There are six scrolls from Herculaneum in the collection. And my approach and my pitch
+to the folks who manage that collection was that we could use tomography to read the interior
+structure and writing of the scroll, and that there was no other known method to do that.
+All true. You're seeing in this picture the work that we did to engineer a case that would allow
+us to safely scan the scroll. And the reason that we needed the case was because the
+tomography of the day, which began to come in underneath the work I was doing, required that
+the scroll be scanned on its major axis standing upright doing a pirouette. So we could get 360
+degrees all the way around at very small angular motions. And standing these on end presents a real
+challenge actually, because they're pretty fragile. So we engineered cases and a safe way of supporting
+and then mounting these things inside. And we went after it. And the literature is really intriguing.
+If you study a little bit about Herculaneum, you'll find that of the scrolls that were able to be
+opened, there's Greek and Latin literature, much of it around Epicurean philosophy, with actual
+titles with the names of the authors from the ancients, and titles like a Treatise on Death,
+a Treatise on Poetry, on Piety. It turns out that despite many of these scrolls being opened,
+there are hundreds that are yet to be opened. And the ones that were opened ended up in this
+sort of fragmentary state. We could call it a disaster because had they been maintained intact,
+I believe it might be possible to create something that's not nearly this fragmentary.
+But you can see here in the pictures of open fragments, both the damage of the
+carbonized papyrus, and you can also see the clearly visible ink, although we're dealing
+with here is carbonization. And carbonization means that the high heat without oxygen
+preserved the papyrus, but it converted it, although it wasn't consumed, into this
+carbonized form. There was some shrinkage and also made it extremely fragile. So the archive at
+both the Institut de France and in Naples, where the bulk of this material actually still sits,
+the archive is riddled with the remnants of the physical attempts of unwrapping.
+And despite those attempts, there are still some that remain unopened. And here's one from the
+Institut de France, and this is one of the two that we actually imaged in the late 2000s.
+You see here Madame Kéroux, who was the conservator at the time,
+working with Daniel de Lattre, a pepperologist, an eminent
+Herculaneum pepperologist, handling the scroll. And we did it. The first view of the interior
+of a Herculaneum scroll was created by us in 2009. And here's what it looks like.
+A moment of silence is required, because when I saw this, I realized I was basically doomed.
+Our software, there was no way we were going to extract from chaos what we needed in terms
+of precision to be able to do unwrapping and then reading of the ink. We knew we could do some,
+but a complete unwrapping was just beyond the scope of where we were at the time.
+On the right, you see Madame Kéroux with the case we constructed,
+inserting the scroll into the machine. And you also see above here the radiograph,
+which sort of shows the bulk of the scroll. But you see these bumps,
+you have damage not just in crushing the scroll to an oval like the Book of the Dead,
+but you also have crunching in the other dimension, causing wrinkles that make these
+things move in and out of the slice direction. So you can't just do a sort of simple slice-based
+method to segment and then connect all the dots into some kind of 3D
+representation, as I had done in the lab on most of my proxies.
+So yeah, the tangle of the tortured interior of a Herculaneum scroll became one of the central
+challenges of my work once we did the first scan in 2009 and realized both the potential and the
+challenge of what we were dealing with. You also see here is a lot of delamination
+because the fibers come apart, and every page of the papyrus is actually a set of two pages
+with fibers that are orthogonal to each other. And then those fibers delaminate, and it becomes
+very difficult to tell which one was the base layer, which one was the top layer, where's the
+ink. And yet you see these curious changes in intensity representing density differences
+on those fibers of papyrus. I don't know how many of you have an adjective or a
+past participle connected with your name, but it's a fun game to play. Take your name
+and then add some word, see what comes up on Google. After I did that initial work, Stymie
+became inexorably connected to my name because the report after we got back had to be actually that
+we weren't able to advance because the X-ray data showed a really complex problem
+that we weren't prepared yet to solve. So this absolutely fair article, but not always what you
+want to see sort of connected with your work. So let me say through that time period, a lot of
+things were evolving. Computation was becoming much more powerful in terms of the memory available
+to systems so we could load much more of a volume into memory. Most of our code prior to that had
+to load volumes from tomography in portions and then do a lot of gymnastics through caching
+to be able to do a lot of the processing we wanted to do. So memory started to escalate,
+and some of the companies who were driving that became interested in the heritage sector,
+and one of them was Google. So my sabbatical in 2012-13 academic year was with the Google Cultural
+Institute. And between these two dots, I'm going to get to Ngedi in a minute, I started here with
+Paris, the Cultural Institute provided a crucial inspiration and shot in the arm to be able to
+recover from the challenge that we saw in Herculaneum and be ready for the success that we
+found in Ngedi. So that's how this story is going to go, and when I get to current work,
+I'll add to it the fact that deep learning over all of this time has come in as a game changer
+near the end. Okay, so what emerged was a pipeline, and I said this wouldn't be a technical talk,
+so I'm not going to unpack this pipeline in technical terms, but once you acquire some
+kind of volumetric representation of something that you'd like to discover, the interior of
+which you'd like to discover, there are these basic algorithmic steps that have to take place
+to be able to get you through the processing pipeline from the raw acquired data to something
+that's going to be, for example, readable. And so we developed this pipeline and built software
+around it. Okay, so we acquire tomographic data. We need a way to represent that and package it.
+We want to segment it and not just in 2D slices, but we want arbitrary slice directions,
+and we want to be able to create, for example, a 3D structure tensor and 3D vector space to be
+able to do slice independent sorts of operations. And then when we're ready to localize what we
+think we've found, we want to be able to have methods that allow us to texture from that volume
+onto a surface that is embedded and do that in a way where we can turn a lot of knobs
+to see if we can optimize what is the best texture that we can get from the volume
+on the embedded localized surface. And then finally doing that piecewise,
+flattening those pieces and merging it all together, made a pretty long software pipeline
+that we've been working on for a while. Along with that pipeline, it turns out that there's
+another half of it, and that half is the metadata side. Turns out to be really, really important
+for reasons I'll explain in a minute, but it may be obvious to you that if you do the acquisition
+and segmentation and then you don't capture the details of this process, any kind of peer
+review or replication becomes impossible. The secret sauce is baked in. Who's to say
+that that's a verifiable, trustworthy result, right? And that's actually true all the way
+through the pipeline. So most recently we've completed the virtual unwrapping pipeline
+by making sure that the metadata representation along with all the steps of the pipeline
+are robust, carefully stored, and kept together like a trail of breadcrumbs that allows us to
+move forward and backward and scrutinize every piece of the algorithmic pipeline that we put
+together to lead us from acquisition all the way to some kind of texture claim.
+And yeah, what this looks like is a fair amount of structured data, but these links are incredibly,
+incredibly important to capture, maintain, and then manipulate. This structure is super important.
+All right, so you have the virtual unwrapping pipeline with the algorithms on top and the
+metadata on the bottom and having evolved that, premised with the challenge of Herculaneum
+and then the inspiration and the shot in the arm of being at Google with computational resources
+and folks who were really interested in this problem, on the scene comes the opportunity
+to work with Penina Shor from the Dead Sea Scroll collection in Israel. So Penina was,
+until this year, the director of the Dead Sea Scroll project, part of the Israel Antiquities
+Authority in Jerusalem, and she is also a visionary, opened up the collection through
+spectral imaging to all kinds of analysis. And those carefully taken images are spectacular.
+And along with the work she was doing, had become familiar with what I was trying to do and
+knew that in her collection was a scroll that had been found at an excavated site in
+the town of En Gedi, western shore of the Dead Sea, not far from Qumran, excavated in 1970
+by an Israeli archaeologist by the name of Sepi Parath. Now what was really interesting
+about the excavation here, and you see this is a national park, it's covered and you can go and
+visit, the Dead Sea is in the background, the park in the foreground, and En Gedi oasis just
+to the left with the springs flowing down from the Judean Desert just off camera. What actually
+was discovered here was a full-blown synagogue with one of the most beautiful mosaic floors
+from the Byzantine era that had been discovered. And this synagogue had not only the mosaic floor
+but also the Holy Ark. And you can see here the Holy Ark, sign number eight. This was actually
+the spot where the Holy Ark was excavated from this destroyed Byzantine Jewish synagogue.
+And this synagogue, when it was excavated, looked like this. That is the place where the scroll from
+En Gedi was pulled from the ground by the hands of Sepi Parath in 1970. This object being pulled
+from the ground was remarkable in itself and rescued, archived for some 50 years, right, in the
+archives of the IAA. But Penina had the vision to pull it out and say, I know SEALs is trying to do
+some volumetric scanning. Maybe we'll go ahead and we'll image this and see what happens. Got
+nothing else we can really do on this object. It's too badly burned. So she did that, and she met me
+with a disk at the opening of a Dead Sea Scroll exhibit in the Los Angeles Science Center in 2015.
+And she handed me that disk, and on it were the micro-tomography slices of the scroll from
+En Gedi. And she sent me back to my lab to work on it. And you can see what these slices look like.
+It's somewhere in between what I had started with in my lab and what I had failed to be able to unwrap
+from Herculaneum. In fact, we found about seven wraps of animal skin in a pretty unpredictable
+form, but our software had matured to the point where we could actually make something happen
+with this data. And that's exactly what we did. Our first example of what we were able to pull
+out from the core of the scroll looked like this image. You can see that the image is not perfect.
+We have some bad flattening here that creates smearing in this texture. And we have some missing
+spots and so forth. And obviously this was done in two chunks and fairly badly merged together.
+But nevertheless, I took this image and I sent it to Penina. And she answered back,
+you won't believe what you've discovered. This is the oldest copy of Leviticus that's ever been
+discovered in the temple. In fact, it was carbon dated to third century. And she immediately called
+a press conference from Israel and we made the announcement. And we made the announcement based
+on that image, which I love Penina and I loved the participation we had together, but I would
+have waited because we hadn't published a paper yet and we hadn't completed the work yet. I want
+to show you the completed work in a minute, but we did the press conference, me in Lexington,
+Kentucky, in my office, this office, in fact, and Safi Purath in the middle who came out of
+retirement because he was so excited because it turns out that the scroll was a Torah scroll
+that he had recovered. And it's the only one ever found in the remains of a synagogue,
+the archeological remains of a synagogue. On the right, you see David Merkle, who was the scanning
+who did the scan with his sheen and you see on the left Penina Shor. Eventually what this led to
+was a full-blown unwrapping, a publication, and probably a semi pinnacle of my career where I was
+able to do Ask Us Anything and did some Q&A around this completely unwrapped scroll. Let me show you
+the image that we created from the interior at scale. And so you can see the Hebrew from the
+inside, five wraps, and you can tell there are five because you can look at the divots here,
+one wrap, two wraps, three wraps, four wraps, five. That's sort of the damage of the cylinder
+where a whack had been taken out. You see the same kind of thing here, one, two, three, four.
+Okay, those scallops sort of as you roll it, this is a view at scale of what the actual exterior of
+the scroll looks like. And here's a penny for scale. I'd like to go ahead and just walk you
+through a video that shows the steps from tomography to complete unwrapping in the case
+of the scroll from En Gedi. And this was really the first demonstration of being able to produce
+a text from the interior of something so badly damaged that it could never be physically open.
+So you see here a volumetric rendering of the structure that comes just from the raw acquisition
+of the tomography at about 18 microns of resolution. And then what I'll show you is the
+segmentation algorithm identifying a single layer and following it all the way through the volume
+in order to do a piecewise segmentation of the wraps. And you see that things even become
+disconnected because of the damage. First, we scan for shape when we create a model that localizes
+where we think the writing is based on the substrate position. And then we apply the
+texturing, which is to say that we go back and use filters to map to that embedded surface what
+we think the texture ought to be from what was captured in the volume. And it's a little bit
+more sophisticated than just saying, what's the brightest closest point, give me that.
+We actually did some filtering and some, if you saw the wraps, you can see that the animal skin
+had sort of bubbled up. So there was a little bit of region filtering that we had to do
+to end up with the quality that we got for this publication. You see the, let's see, two or six
+sections here that we flattened and then merged. Flattening allows us to get to a sort of common
+space that allows a fairly accurate merge based on the structure, which you can see here in the
+cracks and also based on the text. If you want to go off and look at this video, you can find
+it online and it has much better narration to go with it because my daughter did the voiceover.
+She sounds a lot better than I do. And I am grateful to her for having done that work because
+this video has been played a lot and it captures all the steps of one of our biggest successes,
+which was the scroll from Mangetti. Let me tell you a little bit about the historical
+significance of this. We found that the Mangetti scroll sort of punctures a period
+of relative silence in biblical history. We have the Dead Sea Scrolls basically at 79 CE, 70 CE,
+fall of Jerusalem, explosion of Vesuvius. The ancient world was pretty crazy in that first
+century. And then you have the Cairo Genizah and the Venetuth A basically over here at 7, 800.
+And in between, there's not a lot. It's fragmentary. So a date of 300 CE is really
+pretty interesting and pushes back our knowledge of the text of this particular
+book of the Bible, Leviticus, quite a ways. So what was interesting about my work of this work
+and was a dream of mine was that we co-published actually two publications, the technical
+publication that outlined everything that we did technically to be able to get that image.
+And then together the same team also published a biblical publication that tried to interpret and
+frame the significance of the text itself in its context. You see the lead author here is Michael
+Siegel and Emmanuel Tove. These guys are titans. They're giants in the field of biblical scholarship
+relative to the Dead Sea Scrolls. It was my great honor to be able to provide them this image from
+which they were able to produce a complete transcript. If you're interested in what the text
+was and I am, because I am a fan of biblical scholarship, Leviticus chapter one is ironically
+about burnt offerings, if it's not ironic enough. But we have the first verse which says,
+the Lord called to Moses and spoke to him. And the word called is actually the name of the entire
+segment because the Lord called. So the word's very, very important and that word appears
+in the text we recovered. So one of the key biblical scholarship results was that
+the text of this scroll matches the Masoretic settled text from the Cairo Geniza and later
+in the eighth, 10th century, almost letter for letter. So at that point, the text likely was
+settled. So it was chaotic earlier than that and that pushes some of the known dates back
+quite a few years from when they were posited. If you want to read the paper, it's at Science
+Advances and it was also covered in New York Times and that image appeared on the front page.
+And it was not without controversy. So I want to share a little of the controversy and then I'll
+move to current work. A little of the controversy occurred around exactly what I was talking about
+in the pipeline, the virtual unwrapping pipeline, the lower part, the provenance chain,
+because there are also folks working in this area who don't release data or the metadata that you
+need to follow that provenance chain. And then that ends up becoming problematic. And I got into
+a little bit of a skirmish with some colleagues who released some data that didn't allow that
+kind of scrutiny. So for those of you who are interested in the American news show 60 Minutes,
+I'm going to show you a couple of clips from the show that covered this work. The 50th season,
+it appeared Easter Sunday, 2018. You can find it on my website. But let me go ahead and-
+You know they say, Bill, that the reason academics argue is because the stakes are so low,
+right? The stakes actually are really high. If you think about the possibility of revealing
+these manuscripts to the world from 2,000 years ago that no one's ever read. And okay,
+so now we're going to argue with each other? Really? I mean, maybe we could do that later
+after we've read them. Yeah. So that's me being a little bit snippy, but that's,
+I like to call that the stakes are high. Okay. And then the next clip is here.
+Brent Seals looked at your latest findings and he says he doesn't see any letters.
+I know. I don't know why. You don't know why?
+I don't know why. I guess my threshold is somewhat different. When I see writing,
+you know, it should line up. It should be more than a letter or two. You ought to be able to see
+text that looks like something you can actually read.
+Okay. So I know there's never been any controversy or rivalry in physics. Okay. That's true, right?
+But in computer science, you know, we were having a little bit of a rivalry and that's because I had
+a lot of data that looked like this. These are not letters. These are data that I snipped out of
+all kinds of things I had scanned. This is probably from Herculaneum,
+but they're at the wrong scale or they just look like letters, but they're not actually letter
+forms. And we ran a skirmish because this group had published a paper where they built an alphabet,
+not a text. They found things that looked like letters and they said, oh, that looks like an
+alpha. So then they fill in the chart, alpha, beta, gamma. And to me, that looked like the
+butterfly alphabet, right? Without a systematic way of saying this is an actual text that is
+coherent on the page. You're basically just hunting and pecking for letters. And I didn't
+like that. I wanted the provenance chain to be more systematic than that. You know, it's usually
+pretty easy to tell when you can see text in these volumes. If you take this example, this is the
+Morgan 910. It's an early copy of the Acts of the Apostles. It's impossible to open this manuscript
+because the pages are badly damaged and stuck together. We had a chance to scan it.
+And in this case, the codex looks like this edge on. It's not a scroll, but you can see a lot of
+variability on the page because the ink is iron gall. And so as, I don't know why it's playing
+a little slowly for me, but as you go through these slices, you can see, you should be able to
+see variations in intensity and, you know, maybe even better in this image where you're seeing the
+the actual binding structure in kind of in a volumetric way. And when we virtually unwrapped
+this data set, this is what it looks like. And I don't think anyone would argue
+with an image like this that comes directly out of a volume as this being in some way authentic.
+Now you might argue that, you know, this epsilon might be a little clearer or you should model the
+surface differently or something like that. But we ended up in a controversy over technique.
+So it's really, really important for these things to survive peer review. When I send out a paper
+and I claim that I just read an important thing out of an early copy of the Bible and it's going
+to change scholarship, you better be right about the technology that produced that result.
+Okay, so interesting food for you to think about. I want to move to current work now
+and focus on the primary challenge that it turned out we had with Herculaneum, and that is the ink.
+It's not really x-ray friendly. It's carbon ink. It's not iron gall ink. And the carbon ink isn't
+a natural way. The carbon ink does not naturally show up in the way most people look at tomography.
+Most people are trained to take a look at tomography and say, if it's brighter, you know,
+then that's probably where the ink is. And if I can't see anything, but this is not brighter,
+then there's no ink there. This came for us to be called the carbon ink challenge. And here's what
+this looks like on a small fragment. On the left, a fragment from Herculaneum that shows a lunate
+sigma. It's basically an old style sigma as a C. And on the right, a rendering of the tomographic
+capture of that, and it shows no evidence of the ink at all. So you're going to look at this and
+say, well, too bad, you know, there's no ink there. Or you're unfortunately not going to be able to see
+the ink. And this is actually what's going on. You have a surface that maybe even has some shape to
+it. And then on top of that, you have thin coating. And when those two things have different
+densities, tomography is going to give you a nice separation between those layers.
+When they have exactly the same densities, there's going to be no visible separation because you
+won't see an intensity difference. That intensity difference is related to the density and when the
+density is the same. Okay, so this might lead you to say, well, the carbon ink is invisible
+and tomography is wrong. Carbon ink isn't invisible in micro CT. I don't know why I
+ever thought this. It seems silly now, but I put a bunch of carbon on a paper and I'm like,
+oh yeah, there's the carbon. Of course, you have to see that it's there. It's not invisible. It's
+masqueraded, right? It's masqueraded because it's thin and it's sitting on a bunch of other stuff
+that looks the same. So we started to think, okay, we're dealing with something that we know we can
+capture evidence for, but we have to tease it out, right? And we probably need higher resolution,
+but it probably creates some change in the shape of what it's coded on. And we now have deep
+learning as a method to do the teasing, right? The detection. So our current work has been to
+try to really push on this and figure out, okay, if you have a surface that has a texture on it,
+which is exactly what papyrus is, this fiber structure is really pretty predictable,
+and you can quantify it statistically. What happens when you put the ink on it,
+and can you register a change? Also, we wanted to know, well, what are the resolution limits?
+Our scan in 2009 was at 25 microns, but when we go back to a beam, an actual beam line using
+a synchrotron, we can get resolution down in the single digits now. Is that a game changer? Does
+that make a difference? So here's the observation. Not seeing the ink in the scan doesn't mean the
+same thing as there's no evidence of the ink in the scan. It means that we have to find an
+algorithm to be able to tease out the evidence and make it visible. Okay, so here's an experiment
+shows the concept on a phantom that we made. The phantom has six columns, each column with
+escalating amounts of carbon. Okay, numbered across the top in iron gall, one, two, three,
+four, five, just shows sort of the number of coats. So this is not meant to be metric, right,
+but sort of quantitative. So one coat for the leftmost column, six coats for the rightmost
+column. We imaged that. Okay, so this is kind of a mashup so that everything that you see now can be
+aligned so that your eye can sort of see, okay, if I'm looking at one of those deltas or those
+sigmas, what does that look like in the other modalities? So when we go to the tomography,
+look over here in the left column, can't see anything. It's like not there, but all of the
+dots in iron gall and all the numbers, one, two, three, right, you can see those. You look in the
+rightmost column where it's carbon's actually six layers thick. You can start to see, okay,
+there's a density shift. It's thicker. I can see that, right? Okay, so we used this as the basis
+for the training of a convolutional neural network, and here's how the training works.
+Aligning the volume with the known target, we are able to take that alignment, okay, so there you
+have the alignment image, which creates for us a label scheme, right? And we can trace the label
+scheme all the way through to the volume, the actual tomographic volume in an oriented way,
+and we can associate a volume with a label, okay? Here's a volume in the tomographic set.
+Here's the label ink or no ink, okay? Millions of examples. We supervise the network. We train it,
+and hopefully it generalizes the concept of what a sub volume that captures ink looks like,
+ink and known. Okay, this was the result that we got on the carbon phantom,
+okay? This is an enfold result, so what we do is we drop one out, train on everything else,
+and then go ahead and run the inference engine on the one that was dropped out.
+Okay, so it's clear that all of the columns except column one, and even you see the remnants
+in column one, become visible using the proper training scheme with a labeled set.
+Okay, so this represented for us what we thought was a breakthrough, which is that there is
+evidence in carbon ink, in tomography of carbon ink with micro CT, so it's not invisible. You
+have to do some gymnastics, and then you can tease it out. So is it possible to do that with
+Herculaneum? So I'm going to show you an example with the authentic ink. Here's the triptych that
+shows you the lunate sigma, micro CT showing no evidence of visible ink, the result of the
+machine learning, and I think this was a six-fold experiment where we just divided the scheme into
+six and then did the training and then the inference, and then this is the amplified result
+where you can clearly see that we identified the ink. But I think maybe this is even more
+interesting. Let me show you this example. On the left, we're going to do the training,
+and then having never seen the right, we're going to just classify on the right using the
+trained neural network. This fragment's about the size of the palm of your hand, maybe a little bit
+smaller. So the letter form size you're looking for is this size white alpha I show you at the
+bottom. The letter is not going to be an alpha, but it's going to be a Greek letter up here on
+the right-hand half somewhere, and I'm just going to go ahead and play the training as a video so
+you can see the training converge. Okay, you ready? Do the training. Training on the left,
+classify on the right. So on the right-hand side, you should be seeing some kind of letter form
+kind of appear, and of course, if we were all together, you'd all be shouting that,
+we'd be jumping up and down, and then we'd be going out for beers afterwards, but we're not
+together. So I'm going to show it to you in kind of a smaller view, and hopefully you can sort of
+see this omega, and then when I show you on the left the actual photograph, you see that's clear
+omega with other ink remnants where they should be, and then on the right's the training mask.
+Okay, so success on real Herculaneum material using machine learning to tease out pure carbon
+ink. All right, so we're going after this. This is an area of active pursuit. We spent time last
+year at the beam in Oxford, England using the diamond light source. They have a synchrotron
+there, and inside this container is the scroll I scanned in 2009, getting scrolled again,
+and this is what that data looks like. It's beautiful. It's pristine. It was a real joy
+working with the folks at Oxford at the diamond light source, and I have to say that they really
+helped us do something special here in getting the quality of this data with the kind of working
+volume because we're talking, I think this maybe came in at five microns across a pretty big
+working volume, so there's an enormous amount of data here that we think is exactly at the right
+resolution for us to be able to read the ink. So story is not yet told, but we hope that we're on
+the verge of something really big and being able to make all that come together. I'm going to finish
+by talking about one last innovation, and that is the surprise that it turns out you can learn more
+than just ink knowing. It can actually make the result look as good as a photograph, so take a
+look. Instead of ink knowing, we're going to get rid of that binary chart and just train straight
+up on the RGB values, and if you have spectral imaging, you can do that too. So we associate
+every sub volume with its visual appearance in RGB space. We train on that and we build a network
+that allows us to render from tomography alone what this thing would look like if we could
+render it as an RGB image. So this is not a photograph, right? This is a rendered view of the
+phantom, the carbon phantom, and it shows that the network was able to learn more than just the
+ink knowing signal that was able to actually learn something about the visual appearance
+of this chart from the tomography alone. We think that's pretty spectacular, and here's the
+triptych that shows you the photograph on top, the tomography, the ink knowing label scheme,
+and then finally the photo realistic rendering. All right, and I'll finish by showing you a real
+example from the Morgan 910 manuscript that takes a fragment that's open, allows us to capture
+it tomographically, and then build the label set between the appearance in RGB space and the
+tomographic representation as sub volumes, and here is what we can render using an unfold experiment
+from that. So photograph on the far left, rendered version on the far right, tomography in the
+middle. See, normally if we were doing virtual unwrapping, we'd be giving the scholar the middle
+view and saying, sorry, it's x-ray, too bad, deal with that, but now using a trained network,
+we think we can do something much, much better. I never would have thought this was possible,
+but it emerged in the last two years of our work, and I'll show you finally to finish a complete
+page extracted from the inside of the Morgan 910, virtually unwrapped, and then rendered
+photorealistically. So we've never exposed this page to photography, but we're going to use the
+neural network to re-render it photorealistically. Okay, there's the first pass at fairly low
+resolution, and then if you're able to wait a day or two, you can get that. We're told
+if you're an expert in Coptic Egyptian that this is a spectacular result, and I don't argue with
+those people because if you're willing to spend that much time learning Coptic Egyptian,
+I think you know what you're doing. All right, so I'd like to say
+that we believe we have found a way to read Herculaneum Inc. using machine learning,
+and we believe further that we've found a way to render things from tomography
+so that they look photorealistic. We think this is really interesting, and if you want to hear more
+about the stories that I've been telling this whole time, look for the book I'm going to produce
+next year from Princeton University Press, and you can invite me up there. I'll take questions
+now. Thank you very much. All right, thanks Brad.
