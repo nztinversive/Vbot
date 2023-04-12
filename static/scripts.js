@@ -6,20 +6,29 @@ document.getElementById("user-input").addEventListener("keydown", function(event
     }
 });
 
+function showLoadingIcon() {
+    document.getElementById("loading-icon").style.display = "block";
+}
+
+function hideLoadingIcon() {
+    document.getElementById("loading-icon").style.display = "none";
+}
+
 function sendMessage() {
-    console.log("sendMessage called"); // Add this line
+    console.log("sendMessage called");
     const userInput = document.getElementById("user-input").value.trim();
     if (!userInput) {
         return;
     }
     const chatHistory = sessionStorage.getItem("chat_history") || "";
+    showLoadingIcon();
 
     fetch("/ask", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify({
+        body:        JSON.stringify({
             user_input: userInput,
             chat_history: chatHistory,
         }),
@@ -34,10 +43,12 @@ function sendMessage() {
         } else {
             alert("Error: " + data.error);
         }
+        hideLoadingIcon();
     })
     .catch((error) => {
         console.error("Error:", error);
         alert("Error while making request: " + error);
+        hideLoadingIcon();
     });
 
     document.getElementById("user-input").value = "";
@@ -65,3 +76,4 @@ function loadChatHistory() {
 }
 
 loadChatHistory();
+
